@@ -13,5 +13,6 @@
     <orderEntry type="library" name="webpack-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="react-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="fetch-mock-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="react-native-DefinitelyTyped" level="application" />
   </component>
 </module>

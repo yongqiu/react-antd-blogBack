@@ -5,7 +5,7 @@ import { Router, Route, hashHistory, IndexRoute, Redirect, IndexLink} from 'reac
 // 引入单个页面（包括嵌套的子页面）
 import myIntroduce from './introduce.js';   
 import UserCountByDay from './echarts/UserCountByDay.js';       //表格
-import QueryErrorPage from './table/table.js';
+import Userlist from './table/userList.js';
 import Sider from './sider.js';
 
 
@@ -18,7 +18,7 @@ ReactDom.render((
             <IndexRoute component={myIntroduce} />
             <Route path="/myIntroduce" component={myIntroduce} />
             <Route path="/echarts/UserCountByDay" component={UserCountByDay} />
-            <Route path="/table/QueryErrorPage" component={QueryErrorPage} />
+            <Route path="/table/userList" component={Userlist} />
         </Route>
     </Router>
 ), document.getElementById('app'));
