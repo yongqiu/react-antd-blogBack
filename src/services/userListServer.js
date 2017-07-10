@@ -41,3 +41,22 @@ export function getUserList(requireData) {
     };
     return request( requestURL , requestData );
 }
+
+export function editUserInfo(requireData) {
+    const requestURL = 'http://localhost:8888/admin/api/editUserInfo'
+    let requestData = {
+        method: 'POST',
+        headers: { ...headers},
+        body: JSON.stringify(requireData)
+    };
+    return request( requestURL , requestData );
+}
+export function deleteUserInfo(requireData) {
+    const requestURL = 'http://localhost:8888/admin/api/deleteUserInfo'
+    let requestData = {
+        method: 'POST',
+        headers: { ...headers},
+        body: JSON.stringify(requireData)
+    };
+    return request( requestURL , requestData );
+}

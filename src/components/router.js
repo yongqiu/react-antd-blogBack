@@ -3,8 +3,7 @@ import ReactDom from 'react-dom';
 import React from 'react';
 import { Router, Route, hashHistory, IndexRoute, Redirect, IndexLink} from 'react-router';
 // 引入单个页面（包括嵌套的子页面）
-import myIntroduce from './introduce.js';   
-import UserCountByDay from './echarts/UserCountByDay.js';       //表格
+import myIntroduce from './introduce.js';
 import Userlist from './table/userList.js';
 import Sider from './sider.js';
 
@@ -17,7 +16,6 @@ ReactDom.render((
         <Route path="/" component={Sider}>
             <IndexRoute component={myIntroduce} />
             <Route path="/myIntroduce" component={myIntroduce} />
-            <Route path="/echarts/UserCountByDay" component={UserCountByDay} />
             <Route path="/table/userList" component={Userlist} />
         </Route>
     </Router>
