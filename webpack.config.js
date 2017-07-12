@@ -22,7 +22,7 @@ module.exports = {
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss")},
             { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!postcss!sass")},
             { test: /\.(png|jpg|gif)$/, loader: 'url?limit=819200'}
-        ]
+        ],
     },
 
     babel: {

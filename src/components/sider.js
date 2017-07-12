@@ -8,10 +8,8 @@ const SubMenu = Menu.SubMenu;
 
 let routeMap = {
     '/myIntroduce': '0',
-    '/echarts/UserCountByDay': '1',
-    '/echarts/AppStartCountByDay': '2',
-    '/echarts/ErrorCountByDay': '3',
-    '/table/QueryErrorPage': '4'
+    '/article/add': '1',
+    '/table/userList': '2',
 };// 配置导航
 class Sider extends React.Component {
     constructor(props) {
@@ -55,10 +53,10 @@ class Sider extends React.Component {
                     >
                         <Menu.Item key="0"><Link to="/myIntroduce"><Icon type="mail" />Dashboard</Link></Menu.Item>
                         <SubMenu key="sub1" title={<span><Icon type="bars" /><span>CountCharts</span></span>}>
-                            <Menu.Item key="1"><Link to="/echarts/UserCountByDay">UserCount</Link></Menu.Item>
+                            <Menu.Item key="1"><Link to="/article/add">新增文章</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="bars" /><span>ListPage</span></span>}>
-                            <Menu.Item key="4"><Link to="/table/userList">用户列表</Link></Menu.Item>
+                            <Menu.Item key="2"><Link to="/table/userList">用户列表</Link></Menu.Item>
                         </SubMenu>
                     </Menu>
                 </div>

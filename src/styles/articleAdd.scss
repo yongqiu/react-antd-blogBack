@@ -1,0 +1,14 @@
+.articleAdd{
+  .tagbox{
+    float: left;
+  }
+  .ant-select-selection{
+    border:none
+  }
+  .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
+    box-shadow: none;
+  }
+  .tagItem{
+    margin-bottom: 0px;
+  }
+}

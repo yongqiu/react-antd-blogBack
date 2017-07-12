@@ -120,6 +120,12 @@ class UserList extends Component {
             if (!err) {
                 Service.editUserInfo(values).then(function (response) {
                     if (response.data.code == 400){
+                        _this.props.form.setFields({
+                            username: {
+                                value: values.username,
+                                errors: [new Error('用户名已存在')],
+                            },
+                        });
                         notification.open({
                             message: '用户名已存在',
                             description: 'This is the content of the notification.notification.',
