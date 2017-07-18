@@ -21,7 +21,8 @@ module.exports = {
             { test: /\.js$/, loader: "jsx!babel", include: /src/},
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss")},
             { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!postcss!sass")},
-            { test: /\.(png|jpg|gif)$/, loader: 'url?limit=819200'}
+            { test: /\.(png|jpg|gif)$/, loader: 'url?limit=819200'},
+            {test: /\.json$/, loader: 'json-loader'}
         ],
     },
 
@@ -42,11 +43,6 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env':{
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
         new ExtractTextPlugin('main.css'),
         new CommonsChunkPlugin({
             name: 'vendor',
