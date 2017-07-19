@@ -51,6 +51,8 @@ export function editUserInfo(requireData) {
     };
     return request( requestURL , requestData );
 }
+
+
 export function deleteUserInfo(requireData) {
     const requestURL = 'http://localhost:8888/admin/api/deleteUserInfo'
     let requestData = {
@@ -60,3 +62,4 @@ export function deleteUserInfo(requireData) {
     };
     return request( requestURL , requestData );
 }
+

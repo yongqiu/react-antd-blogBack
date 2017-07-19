@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/7/6.
+ * Created by Administrator on 2017/7/19.
  */
 import fetch from 'isomorphic-fetch';
 let headers = {
@@ -32,18 +32,8 @@ function request(url, options) {
         .catch((err) => ({ err }));
 };
 
-export function addTagsService(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/addArticleTags'
-    let requestData = {
-        method: 'POST',
-        headers: { ...headers},
-        body: JSON.stringify(requireData)
-    };
-    return request( requestURL , requestData );
-}
-
-export function getTagsService() {
-    const requestURL = 'http://localhost:8888/admin/api/getArticleTags'
+export function getArticleService() {
+    const requestURL = 'http://localhost:8888/admin/api/getArticle'
     let requestData = {
         method: 'GET',
         headers: { ...headers}
@@ -51,12 +41,11 @@ export function getTagsService() {
     return request( requestURL , requestData );
 }
 
-export function addArticleService(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/addArticle'
+export function getArticleDetialService(requireData) {
+    const requestURL = 'http://localhost:8888/admin/api/getArticleDetail?id='+requireData.id
     let requestData = {
-        method: 'POST',
+        method: 'GET',
         headers: { ...headers},
-        body: JSON.stringify(requireData)
     };
     return request( requestURL , requestData );
 }

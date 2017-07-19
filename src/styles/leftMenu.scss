@@ -25,7 +25,6 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 20px 20px 0 20px;
     position: absolute;
     top: 0;
     left: 200px;
@@ -36,16 +35,15 @@
 
 .right-box {
     box-sizing: border-box;
-    padding: 20px 20px 0;
-    position: absolute;
-    top: 73px;
-    left: 0;
-    right: 0;
-    bottom: 0;
     overflow-y: auto;
+    position: absolute;
+    bottom: 0px;
+    top: 48px;
+    left: 0px;
+    right: 0px;
 }
 
-#rightWrap .ant-menu-submenu {
+#rightWrap .ant-menu-submenu-horizontal {
     float: right;
 }
 

@@ -127,10 +127,10 @@ class articleAdd extends React.Component {
         const { tags } = this.state
         const { form } = this.props
         const smde = this.smde.value()
-        const data = new Date().format('yyyy-MM-dd hh:mm:ss')
+        const date = new Date().format('yyyy-MM-dd hh:mm:ss')
 
         form.validateFields((err,value) => {
-            let requireData = {...value, tags, smde, data}
+            let requireData = {...value, tags, smde, date}
             console.log(requireData)
             if (value.title && smde){
                 Service.addArticleService(requireData).then(function (result) {

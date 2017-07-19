@@ -1,0 +1,43 @@
+.articleDetail{
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  .leftChildMenu{
+    height: 100%;
+    .ant-menu{
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+    }
+    .ant-menu-item{
+      height: auto !important;
+    }
+    .ant-menu-item p:first-child{
+      font-weight: bold;
+    }
+    .ant-menu-item p:last-child{
+      border-bottom: 1px solid #e1e1e1;
+    }
+  }
+  .rightChildMenu{
+    padding: 20px;
+    position: absolute;
+    top: 0px;
+    left: 240px;
+    right: 0px;
+    bottom: 0px;
+    .title{
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .date{
+      padding: 10px;
+    }
+    .articleContent{
+      font-size: 16px;
+    }
+  }
+}
