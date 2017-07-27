@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/7/6.
  */
 import fetch from 'isomorphic-fetch';
+import BASEURL from './serverConfig';
 let headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ function request(url, options) {
 };
 
 export function getUserList(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/getUserList?page='+ requireData.page
+    const requestURL = BASEURL+'/admin/api/getUserList?page='+ requireData.page
     let requestData = {
         method: 'POST',
         headers: { ...headers},
@@ -43,7 +44,7 @@ export function getUserList(requireData) {
 }
 
 export function editUserInfo(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/editUserInfo'
+    const requestURL = BASEURL+'/admin/api/editUserInfo'
     let requestData = {
         method: 'POST',
         headers: { ...headers},
@@ -54,7 +55,7 @@ export function editUserInfo(requireData) {
 
 
 export function deleteUserInfo(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/deleteUserInfo'
+    const requestURL = BASEURL+'/admin/api/deleteUserInfo'
     let requestData = {
         method: 'POST',
         headers: { ...headers},

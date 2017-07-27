@@ -5,11 +5,10 @@ import { Router, Route, hashHistory, IndexRoute, Redirect, IndexLink} from 'reac
 // 引入单个页面（包括嵌套的子页面）
 import myIntroduce from './dashboard/introduce';
 import userlist from './table/userList';
-import articleAdd from './article/articleAdd';
-import Sider from './layout/sider';
-import articleDetial from './articleDetail'
-
-
+import articleTable from './table/articleTable';
+import articleEdit from './articleEdit';
+import Sider from './layout';
+import articleDetail from './articleDetail'
 
 
 // 配置路由
@@ -18,9 +17,10 @@ ReactDom.render((
         <Route path="/" component={Sider}>
             <IndexRoute component={myIntroduce} />
             <Route path="/myIntroduce" component={myIntroduce} />
-            <Route path="/table/userList" component={userlist} />
-            <Route path="/article/add" component={articleAdd} />
-            <Route path="/articleDetial" component={articleDetial} />
+            <Route path="/userList" component={userlist} />
+            <Route path="/articleEdit" component={articleEdit} />
+            <Route path="/articleTable" component={articleTable} />
+            <Route path="/articleDetail" component={articleDetail} />
         </Route>
     </Router>
 ), document.getElementById('app'));

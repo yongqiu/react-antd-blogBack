@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/7/19.
  */
 import fetch from 'isomorphic-fetch';
+import BASEURL from './serverConfig';
 let headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -32,17 +33,27 @@ function request(url, options) {
         .catch((err) => ({ err }));
 };
 
-export function getArticleService() {
-    const requestURL = 'http://localhost:8888/admin/api/getArticle'
+export function getArticleService(requireData) {
+    const requestURL = BASEURL+'/admin/api/getArticle'
     let requestData = {
-        method: 'GET',
-        headers: { ...headers}
+        method: 'POST',
+        headers: { ...headers},
+        body: JSON.stringify(requireData)
     };
     return request( requestURL , requestData );
 }
 
 export function getArticleDetialService(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/getArticleDetail?id='+requireData.id
+    const requestURL = BASEURL+'/admin/api/getArticleDetail?id='+requireData.id
+    let requestData = {
+        method: 'GET',
+        headers: { ...headers},
+    };
+    return request( requestURL , requestData );
+}
+
+export function deleteArticleService(requireData) {
+    const requestURL = BASEURL+'/admin/api/deleteArticle?id='+requireData.id
     let requestData = {
         method: 'GET',
         headers: { ...headers},

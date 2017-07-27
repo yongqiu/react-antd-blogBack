@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/7/11.
  */
 import React from 'react'
-import { Form, Tag, Input, Tooltip, Radio, Button, Select, notification } from 'antd';
+import { Form, Tag, Input, Tooltip, Radio, Button, Select, notification, Breadcrumb } from 'antd';
 import * as Service from '../../services/addArticleServer';
 import SimpleMDE from 'simplemde'
 import marked from 'marked';
@@ -14,27 +14,21 @@ const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 // introduce
 class articleAdd extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor(props, context) {
+        super(props, context)
         this.state = {
-            tags: ['javascript'],
             inputVisible: false,
             inputValue: '',
             existArray:[],
-            content: ''
+            title: '请输入标题',
+            description : '',
+            tags: ['javascript']
         };
     }
 
     componentDidMount() {
         let _this = this
-        Service.getTagsService().then(function (result) {
-            console.log(result)
-            _this.setState({
-                existArray: result.data.tagArray
-            })
-        })
-
-        //new SimpleMDE 富文本编辑器
+        let { description } = this.state
         this.smde = new SimpleMDE({
             element: document.getElementById('editor').childElementCount,
             autofocus: true,
@@ -55,7 +49,19 @@ class articleAdd extends React.Component {
                 });
             },
         });
-        this.smde.value("快来开始写博客吧")
+        if (this.props.location.state){
+            this.getEditArticle()
+            this.smde.value(this.props.location.state.description)
+        }else {
+            this.smde.value(description)
+        }
+
+        Service.getTagsService().then(function (result) {
+            _this.setState({
+                existArray: result.data.tagArray
+            })
+        })
+
 
         // 定义Data格式
         // 用法new Date().format('yyyy-MM-dd hh:mm:ss')
@@ -82,6 +88,15 @@ class articleAdd extends React.Component {
 
     };
 
+    getEditArticle = () =>{
+        let { description, title ,tags } = this.props.location.state
+        this.setState({
+            description: description,
+            title: title,
+            tags: tags
+        })
+    }
+
     /*
     * 标签相关方法
     * */
@@ -98,14 +113,12 @@ class articleAdd extends React.Component {
         this.setState({ inputValue: e.target.value });
     }
 
-    handleInputConfirm = (selectVal) => {
+    //标签输入框确认
+    handleInputConfirm = () => {
         let { inputValue, tags } = this.state
         if (inputValue && tags.indexOf(inputValue) === -1) {
             tags = [...tags, inputValue];
-        }else {
-            tags = [...tags, selectVal];
         }
-        console.log(tags);
         this.setState({
             tags,
             inputVisible: false,
@@ -115,8 +128,13 @@ class articleAdd extends React.Component {
 
     saveInputRef = input => this.input = input
 
+    //选择标签
     handleSelectChange = (value) => {
-        this.handleInputConfirm(value)
+        let { tags } = this.state
+        tags = [...tags, value];
+        this.setState({
+            tags
+        });
     }
     /*
      * ------ END -------
@@ -128,21 +146,37 @@ class articleAdd extends React.Component {
         const { form } = this.props
         const smde = this.smde.value()
         const date = new Date().format('yyyy-MM-dd hh:mm:ss')
-
+        console.log(tags)
         form.validateFields((err,value) => {
             let requireData = {...value, tags, smde, date}
-            console.log(requireData)
+            let _this = this
+            if (value.title == '请输入标题'){
+                notification.open({
+                    message: '请输入标题',
+                    duration: 2
+                })
+                return
+            }
+            if(smde == ''){
+                notification.open({
+                    message: '文章不能为空',
+                    duration: 2
+                })
+                return
+            }
             if (value.title && smde){
                 Service.addArticleService(requireData).then(function (result) {
+                    console.log(result)
                     if (result.data.code == '0000'){
                         notification.open({
                             message: '添加成功',
                             duration: 2
                         })
-                        Service.addTagsService(requireData).then(function (result) {
-                            console.log(result)
-                        })
                     }
+                }).then(function () {
+                    Service.addTagsService(requireData).then(function (result) {
+                        _this.context.router.push({ pathname: `/articleTable`})
+                    })
                 })
             }
 
@@ -151,16 +185,23 @@ class articleAdd extends React.Component {
     render() {
         const { form } = this.props
         const { getFieldDecorator } = form;
-        const { tags, inputVisible, inputValue, existArray } = this.state;
+        const { tags, inputVisible, inputValue, existArray, title } = this.state;
         let tagsList = existArray.map(function(value) {
             return <option value={value}>{value}</option>
         });
         return (
             <div className="articleAdd">
+                {/*<Breadcrumb>*/}
+                    {/*<Breadcrumb.Item>Home</Breadcrumb.Item>*/}
+                    {/*<Breadcrumb.Item><a href="">Application Center</a></Breadcrumb.Item>*/}
+                    {/*<Breadcrumb.Item><a href="">Application List</a></Breadcrumb.Item>*/}
+                    {/*<Breadcrumb.Item>An Application</Breadcrumb.Item>*/}
+                {/*</Breadcrumb>*/}
                 <Form layout="vertical">
-                    <FormItem label="Title">
+                    <FormItem className='titleItem'>
                         {getFieldDecorator('title', {
                             rules: [{ required: true, message: '标题不能为空' }],
+                            initialValue: title,
                         })(
                             <Input />
                         )}
@@ -191,7 +232,7 @@ class articleAdd extends React.Component {
                             {!inputVisible && <Button size="small" type="dashed" onClick={this.showInput}>+ New Tag</Button>}
                         </div>
                     </FormItem>
-                    <FormItem>
+                    <FormItem className='selectItem'>
                         <Select
                             placeholder="Select a option and change input text above"
                             onChange={this.handleSelectChange}
@@ -203,7 +244,7 @@ class articleAdd extends React.Component {
                     <FormItem>
                         <textarea id="editor">hello</textarea>
                     </FormItem>
-                    <FormItem className="collection-create-form_last-form-item">
+                    <FormItem className="radioItem">
                         {getFieldDecorator('modifier', {
                             initialValue: 'public',
                         })(
@@ -213,7 +254,7 @@ class articleAdd extends React.Component {
                             </RadioGroup>
                         )}
                     </FormItem>
-                    <FormItem>
+                    <FormItem className="buttonItem">
                         <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.handleSubmit}>
                             提交
                         </Button>
@@ -223,6 +264,11 @@ class articleAdd extends React.Component {
 
             </div>
         )
+    }
+}
+articleAdd.contextTypes = {
+    router: function contextType() {
+        return React.PropTypes.Object;
     }
 }
 

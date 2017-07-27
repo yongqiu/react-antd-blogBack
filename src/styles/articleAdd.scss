@@ -1,15 +1,48 @@
 .articleAdd{
-  padding:20px;
   .tagbox{
     float: left;
   }
   .ant-select-selection{
     border:none
   }
+  .ant-select-selection__rendered{
+    margin: 0px;}
   .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
     box-shadow: none;
   }
   .tagItem{
     margin-bottom: 0px;
+    padding: 0px 10px;
+  }
+  .radioItem,.buttonItem, .selectItem{
+    padding:0px 10px;
+  }
+  .ant-form{
+    .titleItem{
+      .ant-input{
+        border: none;
+        border-bottom:1px solid #e9e9e9;
+        border-radius: 0px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px;
+        height: auto;
+      }
+    }
+    .ant-input:focus,.ant-input:hover{
+      box-shadow: none;
+    }
+  }
+  .editor-toolbar{
+    //border-left: 0px;
+    //border-right: 0px;
+    //border-top-left-radius: 0px;
+    //border-top-right-radius: 0px;
+  }
+  .CodeMirror{
+    //border-top-left-radius: 0px;
+    //border-top-right-radius: 0px;
+    //border-left: 0px;
+    //border-right: 0px;
   }
 }

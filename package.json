@@ -4,8 +4,8 @@
   "description": "webpack app description",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --devtool --progress",
-    "build": "webpack -p"
+    "dev": "set NODE_ENV=development&& webpack-dev-server --devtool --progress",
+    "build": "set NODE_ENV=production&& webpack -p "
   },
   "repository": {
     "type": "git",

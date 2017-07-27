@@ -149,7 +149,6 @@ class UserList extends Component {
     * 删除用户
     * */
     deleteUserInfo = (values) =>{
-        console.log(values)
         let _this = this
         let page = this.state.currentPage
         Service.deleteUserInfo(values).then(function (response) {

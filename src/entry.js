@@ -11,6 +11,7 @@
 import './styles/app.scss';
 import './styles/articleAdd.scss';
 import './styles/articleDetail.scss';
+import './styles/articleTable.scss';
 import './styles/atom-one-dark.css';
 import './styles/leftMenu.scss';
 

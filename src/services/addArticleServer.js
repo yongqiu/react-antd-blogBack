@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/7/6.
  */
 import fetch from 'isomorphic-fetch';
+import BASEURL from './serverConfig';
 let headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ function request(url, options) {
 };
 
 export function addTagsService(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/addArticleTags'
+    const requestURL = BASEURL+'/admin/api/addArticleTags'
     let requestData = {
         method: 'POST',
         headers: { ...headers},
@@ -43,7 +44,7 @@ export function addTagsService(requireData) {
 }
 
 export function getTagsService() {
-    const requestURL = 'http://localhost:8888/admin/api/getArticleTags'
+    const requestURL =  BASEURL+'/admin/api/getArticleTags'
     let requestData = {
         method: 'GET',
         headers: { ...headers}
@@ -52,7 +53,7 @@ export function getTagsService() {
 }
 
 export function addArticleService(requireData) {
-    const requestURL = 'http://localhost:8888/admin/api/addArticle'
+    const requestURL =  BASEURL+'/admin/api/addArticle'
     let requestData = {
         method: 'POST',
         headers: { ...headers},
