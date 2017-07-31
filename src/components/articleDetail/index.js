@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/7/19.
+ * Created by yongqiu on 2017/7/19.
  */
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'antd';

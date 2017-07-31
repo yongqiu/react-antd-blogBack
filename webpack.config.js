@@ -8,7 +8,7 @@ var webpack = require("webpack");
 module.exports = {
     entry: {
         main: './src/entry.js', //唯一入口文件
-        vendor: ['./src/vendor/jquery.js']      //引入第三方js
+        vendor: ['react','highlight.js']     //react 单独打包
     },
     output: {
         path: './build', //打包后的文件存放的地方

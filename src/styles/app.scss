@@ -4,5 +4,20 @@ html, body, div, h5, h6, p, ul, li {
 };
 body,*{
 }
-
-
+.loginBox{
+    max-width: 300px;
+    margin: 200px auto;
+    p{
+        color: #f04134;
+    }
+    img{
+        margin: 0 auto;
+        display: block;
+    }
+    .ant-form{
+        margin-top: 30px;
+    }
+    .ant-btn{
+        width: 100%;
+    }
+}

@@ -1,5 +1,5 @@
 /**
- * Created by yongqiu on 2017/7/19.
+ * Created by yongqiu on 2017/7/31.
  */
 import fetch from 'isomorphic-fetch';
 import BASEURL from './serverConfig';
@@ -33,30 +33,12 @@ function request(url, options) {
         .catch((err) => ({ err }));
 };
 
-export function getArticleService(requireData) {
-    const requestURL = BASEURL+'/admin/api/getArticle'
+export function loginService(requireData) {
+    const requestURL = BASEURL+'/admin/api/login'
     let requestData = {
         method: 'POST',
         headers: { ...headers},
         body: JSON.stringify(requireData)
-    };
-    return request( requestURL , requestData );
-}
-
-export function getArticleDetialService(requireData) {
-    const requestURL = BASEURL+'/admin/api/getArticleDetail?id='+requireData.id
-    let requestData = {
-        method: 'GET',
-        headers: { ...headers},
-    };
-    return request( requestURL , requestData );
-}
-
-export function deleteArticleService(requireData) {
-    const requestURL = BASEURL+'/admin/api/deleteArticle?id='+requireData.id
-    let requestData = {
-        method: 'GET',
-        headers: { ...headers},
     };
     return request( requestURL , requestData );
 }

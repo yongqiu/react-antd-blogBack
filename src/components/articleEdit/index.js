@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/7/11.
+ * Created by yongqiu on 2017/7/11.
  */
 import React from 'react'
 import { Form, Tag, Input, Tooltip, Radio, Button, Select, notification, Breadcrumb } from 'antd';
@@ -22,7 +22,8 @@ class articleAdd extends React.Component {
             existArray:[],
             title: '请输入标题',
             description : '',
-            tags: ['javascript']
+            tags: ['javascript'],
+            id:''
         };
     }
 
@@ -48,7 +49,8 @@ class articleAdd extends React.Component {
                     }
                 });
             },
-        });
+        })
+
         if (this.props.location.state){
             this.getEditArticle()
             this.smde.value(this.props.location.state.description)
@@ -89,11 +91,12 @@ class articleAdd extends React.Component {
     };
 
     getEditArticle = () =>{
-        let { description, title ,tags } = this.props.location.state
+        let { id, description, title ,tags } = this.props.location.state
         this.setState({
             description: description,
             title: title,
-            tags: tags
+            tags: tags,
+            id: id
         })
     }
 
@@ -142,13 +145,12 @@ class articleAdd extends React.Component {
 
     //提交表单
     handleSubmit = () => {
-        const { tags } = this.state
+        const { tags, id } = this.state
         const { form } = this.props
         const smde = this.smde.value()
         const date = new Date().format('yyyy-MM-dd hh:mm:ss')
-        console.log(tags)
         form.validateFields((err,value) => {
-            let requireData = {...value, tags, smde, date}
+            let requireData = {...value, tags, smde, date, id}
             let _this = this
             if (value.title == '请输入标题'){
                 notification.open({
@@ -166,7 +168,7 @@ class articleAdd extends React.Component {
             }
             if (value.title && smde){
                 Service.addArticleService(requireData).then(function (result) {
-                    console.log(result)
+                    console.log(requireData)
                     if (result.data.code == '0000'){
                         notification.open({
                             message: '添加成功',

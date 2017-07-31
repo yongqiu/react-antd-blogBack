@@ -1,11 +1,18 @@
 import React from 'react'
 // introduce
-export default class myIntroduce extends React.Component {
-    constructor(props) {
-        super(props)
+class myIntroduce extends React.Component {
+    constructor(props, context) {
+        super(props, context)
     }
     componentDidMount() {
-    };
+        let localCookie = localStorage.username
+        let sessionCookie = sessionStorage.username
+        console.log(sessionCookie)
+        if (!localCookie && !sessionCookie){
+            this.context.router.push({ pathname: `/login`})
+            return
+        }
+    }
     render() {
         return (
             <div className="ani-box">
@@ -14,3 +21,9 @@ export default class myIntroduce extends React.Component {
         )
     }
 }
+myIntroduce.contextTypes = {
+    router: function contextType() {
+        return React.PropTypes.Object;
+    }
+}
+export default myIntroduce
